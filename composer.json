@@ -1,0 +1,31 @@
+{
+  "name": "brocode/module-queue-deduplication",
+  "version": "0.0.1",
+  "description": "Magento Module to enhance queueing capabilities with a deduplication mechanism",
+  "license": ["MIT"],
+  "authors": [
+    {
+        "name": "Benjamin Rosenberger",
+        "email": "bensch.rosenberger@gmail.com"
+    }
+  ],
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "magento/module-message-queue": "*"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "BroCode\\QueueDeDuplication\\": ""
+    }
+  },
+  "funding": [
+      {
+          "type": "By me a coffee",
+          "url": "https://www.buymeacoffee.com/brosenberger"
+      }
+  ]
+}

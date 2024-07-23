@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\MessageQueue\QueueInterface">
+        <plugin name="brocode-queue-message-deduplication-finish" type="BroCode\QueueDeDuplication\Plugin\MessageFinishedPlugin"/>
+    </type>
+    <type name="\Magento\Framework\MessageQueue\PublisherInterface">
+        <plugin name="brocode-queue-message-deduplication-publish" type="BroCode\QueueDeDuplication\Plugin\PublisherDeDuplicationPlugin"/>
+    </type>
+
+    <preference for="BroCode\QueueDeDuplication\Api\MessageDeDuplicationServiceRegistryInterface" type="BroCode\QueueDeDuplication\Model\MagentoCacheMessageDeDuplicationServiceRegistry"/>
+
+
+    <type name="\BroCode\QueueDeDuplication\Model\QueueDeDuplicationConfigService">
+        <arguments>
+            <argument name="configStorage" xsi:type="object">BroCode\QueueDeDuplication\Config\DataStorage</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="BroCode\QueueDeDuplication\Config\DataStorage" type="Magento\Framework\Config\Data">
+        <arguments>
+            <argument name="reader" xsi:type="object">BroCode\QueueDeDuplication\Config\Reader</argument>
+            <argument name="cacheId" xsi:type="const">BroCode\QueueDeDuplication\Api\Constants::CACHE_KEY</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BroCode\QueueDeDuplication\Config\Reader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="fileName" xsi:type="const">BroCode\QueueDeDuplication\Api\Constants::FILE_NAME</argument>
+            <argument name="converter" xsi:type="object">BroCode\QueueDeDuplication\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">BroCode\QueueDeDuplication\Config\SchemaLocator</argument>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/topic" xsi:type="string">name</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

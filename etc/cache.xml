@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+    <type name="message_queue_deduplication" translate="label,description" instance="BroCode\QueueDeDuplication\Model\Cache\Type">
+        <label>Message Queue DeDuplication</label>
+        <description>Cache for all currently queued messages as temporary storage to avoid duplicate message enqueueing</description>
+    </type>
+</config>
