@@ -1,6 +1,6 @@
 {
   "name": "brocode/module-queue-deduplication",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Magento Module to enhance queueing capabilities with a deduplication mechanism",
   "license": ["MIT"],
   "authors": [
